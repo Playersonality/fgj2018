@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: 8fff509ffbfe9cd4d942e256a07d5883
-timeCreated: 1517062952
+timeCreated: 1517073213
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: deco_bed
+    21300002: door_v_closed
+    21300004: door_v_open
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -96,6 +98,38 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 416
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 24}
+        - {x: -16, y: -24}
+        - {x: 15, y: -24}
+        - {x: 15, y: 24}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: door_v_closed
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 464
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: door_v_open
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 464
         width: 32
         height: 48
       alignment: 0
