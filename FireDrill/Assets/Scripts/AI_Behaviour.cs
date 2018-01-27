@@ -12,15 +12,17 @@ public class AI_Behaviour : MonoBehaviour {
     public float rotation = 0.0f;
     int turnDir = 1;
     Collider2D hitCollider;
+    ParticleSystem fireParticles;
     LayerMask layerMask;
     bool nextToAWall = false;
+    bool burning = false;
 
 
 	// Use this for initialization
 	void Start () {
         layerMask = 1 << 8 | 1 << 2; //npc | ignore raycast
         layerMask = ~layerMask;
-		
+        fireParticles = GetComponent<ParticleSystem>();
 	}
 	
 	// Update is called once per frame
@@ -75,11 +77,28 @@ public class AI_Behaviour : MonoBehaviour {
         }
     }
 
+    public void SetOnFire()
+    {
+        burning = true;
+        speed *= 2.0f;
+        fireParticles.Play();
+        Destroy(this.gameObject, 2.0f);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Wall")
         {
 
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!burning && collision.tag == "Fire")
+        {
+            Debug.Log("walked into fire");
+            SetOnFire();
         }
     }
 }
