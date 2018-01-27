@@ -3,8 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AI_Behaviour : MonoBehaviour {
+    public enum TurnDirection
+    {
+        Left, Right
+    }
+
     public float speed = 0.02f;
     public float rotation = 0.0f;
+    int turnDir = 1;
     Collider2D hitCollider;
     LayerMask layerMask;
     bool nextToAWall = false;
@@ -12,7 +18,7 @@ public class AI_Behaviour : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        layerMask = 1 << 8;
+        layerMask = 1 << 8 | 1 << 2; //npc | ignore raycast
         layerMask = ~layerMask;
 		
 	}
@@ -35,25 +41,37 @@ public class AI_Behaviour : MonoBehaviour {
             if (ray.collider.gameObject.tag == "Wall")
             {
                 Debug.Log("Hit a wall!");
-                rotation += 90.0f;
+                rotation += 90.0f * turnDir;
                 nextToAWall = true;
             }
         }
         else
         {
-            Debug.DrawRay(transform.position, transform.right * 0.24f, Color.red);
-            RaycastHit2D ray2 = Physics2D.Raycast(transform.position, transform.right, 0.24f, layerMask);
+            Debug.DrawRay(transform.position, transform.right * 0.24f * (float)turnDir, Color.red);
+            RaycastHit2D ray2 = Physics2D.Raycast(transform.position, transform.right * (float)turnDir, 0.24f, layerMask);
 
             if (nextToAWall && ray2.collider == null)
             {
                 Debug.Log("Moved away from a wall!");
-                rotation -= 90.0f;
+                rotation -= 90.0f * turnDir;
                 nextToAWall = false;
             }
             else if (!nextToAWall && ray2.collider != null)
             {
                 nextToAWall = true;
             }
+        }
+    }
+
+    public void SetTurnDirection(TurnDirection dir)
+    {
+        if (dir == TurnDirection.Left)
+        {
+            turnDir = 1;
+        }
+        else if (dir == TurnDirection.Right)
+        {
+            turnDir = -1;
         }
     }
 
