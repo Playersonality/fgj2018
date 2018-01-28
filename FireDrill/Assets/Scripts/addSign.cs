@@ -6,10 +6,18 @@ public class addSign : MonoBehaviour {
 
     public GameObject exitsign;
 
-    private void OnMouseUp()
+    
+    public void CreateSign()
     {
-        Debug.Log("Drag ended!");
-        Instantiate(exitsign, position: transform.position, rotation: Quaternion.identity);
+
+        if (Input.GetKeyDown (KeyCode.Space))
+        {
+            Debug.Log(message: "space pressed");
+            var mousePos = Input.mousePosition;
+            Instantiate(exitsign, mousePos, Quaternion.identity);
+
+        }
+    
     }       
 }
         
