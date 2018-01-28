@@ -8,7 +8,7 @@ public class Fire : MonoBehaviour {
         Left, Right, Up, Down, None
     }
 
-    float spreadTime = 0.5f;
+    float spreadTime = 0.16f;
     float spreadTimer = 0.0f;
     public Transform flame;
     List<Transform> flames;

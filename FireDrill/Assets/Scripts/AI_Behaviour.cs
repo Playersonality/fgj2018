@@ -82,12 +82,15 @@ public class AI_Behaviour : MonoBehaviour {
 
     public void SetTurnDirection(TurnDirection dir)
     {
+        nextToAWall = false;
         if (dir == TurnDirection.Left)
         {
+            rotation += 90.0f;
             turnDir = 1;
         }
         else if (dir == TurnDirection.Right)
         {
+            rotation -= 90.0f;
             turnDir = -1;
         }
     }
