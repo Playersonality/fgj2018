@@ -47,12 +47,16 @@ public class Fire : MonoBehaviour {
         bool looping = true;
         while (looping)
         {
-            Debug.Log("looping");
+            flamesCount = flames.Count;
             index = Random.Range(0, flamesCount);
             freeDir = GetFreeDirection(flames[index]);
             if (freeDir != FireDirection.None)
             {
                 looping = false;
+            }
+            else
+            {
+                flames.RemoveAt(index);
             }
         }
 
@@ -68,27 +72,22 @@ public class Fire : MonoBehaviour {
         bool looped = false;
         while (!looped)
         {
-            Debug.Log("not looped yet");
             Vector2 rayDir = RayDirection((FireDirection)currentDir);
             RaycastHit2D[] hits = Physics2D.RaycastAll(obj.transform.position + new Vector3(rayDir.x, rayDir.y) * 1.0f, RayDirection((FireDirection)currentDir), 0.05f);
-            Debug.DrawRay(obj.transform.position + new Vector3(rayDir.x, rayDir.y) * 1.0f, RayDirection((FireDirection)currentDir) * 0.05f);
+            //Debug.DrawRay(obj.transform.position + new Vector3(rayDir.x, rayDir.y) * 1.0f, RayDirection((FireDirection)currentDir) * 0.05f);
             bool flameHit = false;
             foreach (RaycastHit2D hit in hits)
             {
-                Debug.Log(hit.collider.tag + " " + hit.collider.name);
-                Debug.Log(hit.collider != selfCollider);
                 if (hit.collider != selfCollider &&
                     hit.collider.tag == "Fire")
                 {
                     flameHit = true;
-                    Debug.Log("cant spawn");
                     break;
                 }
             }
 
             if (!flameHit)
             {
-                Debug.Log("direction selected");
                 return (FireDirection)currentDir;
             }
 
