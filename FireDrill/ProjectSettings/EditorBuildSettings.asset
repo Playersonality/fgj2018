@@ -11,6 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/templevel_deco.unity
     guid: 70b30e2fb2b596e43a41debbb462a813
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/templevel.unity
     guid: 292b418dc555cd24abec4c8b2f0829e0
