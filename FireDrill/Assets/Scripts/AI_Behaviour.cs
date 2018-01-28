@@ -8,7 +8,8 @@ public class AI_Behaviour : MonoBehaviour {
         Left, Right
     }
 
-    public float speed = 0.02f;
+    float normalSpeed = 0.06f;
+    float speed = 0.0f;
     public float rotation = 0.0f;
     int turnDir = 1;
     Collider2D hitCollider;
@@ -19,6 +20,8 @@ public class AI_Behaviour : MonoBehaviour {
     bool nextToAWall = false;
     bool burning = false;
     bool escaped = false;
+    float bonkDelay = 1.6f;
+    float bonkTimer = 1.6f;
 
 
 	// Use this for initialization
@@ -28,6 +31,7 @@ public class AI_Behaviour : MonoBehaviour {
         fireParticles = GetComponent<ParticleSystem>();
         rend = transform.GetChild(0);
         anim = transform.GetChild(0).GetComponent<Animator>();
+        speed = normalSpeed;
 	}
 	
 	// Update is called once per frame
@@ -37,6 +41,11 @@ public class AI_Behaviour : MonoBehaviour {
 
     void FixedUpdate()
     {
+        if (bonkTimer < bonkDelay)
+        {
+            bonkTimer += Time.fixedDeltaTime;
+        }
+
         transform.rotation = Quaternion.Euler(0, 0, rotation);
         rend.rotation = Quaternion.Euler(0, 0, 0);
         transform.Translate(Vector3.up * speed);
@@ -87,16 +96,22 @@ public class AI_Behaviour : MonoBehaviour {
     {
         burning = true;
         anim.SetBool("burning", true);
-        speed *= 2.0f;
+        normalSpeed *= 2.0f;
+        speed = normalSpeed;
         fireParticles.Play();
         Destroy(this.gameObject, 2.0f);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Wall")
+        if (collision.gameObject.tag == "Escapee" &&
+            bonkTimer >= bonkDelay &&
+            !escaped &&
+            !burning)
         {
-
+            Debug.Log("Crashed to another person");
+            Bonk();
+            bonkTimer = 0.0f;
         }
     }
 
@@ -105,6 +120,17 @@ public class AI_Behaviour : MonoBehaviour {
         anim.SetBool("escaped", true);
         speed = 0.0f;
         Destroy(this.gameObject, 2.0f);
+    }
+
+    private void Bonk()
+    {
+        speed = -0.01f;
+        Invoke("RecoverFromBonk", 0.6f);
+    }
+
+    private void RecoverFromBonk()
+    {
+        speed = normalSpeed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
