@@ -1,12 +1,19 @@
 fileFormatVersion: 2
 guid: 8fff509ffbfe9cd4d942e256a07d5883
-timeCreated: 1517073213
+timeCreated: 1517131203
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: deco_bed
     21300002: door_v_closed
     21300004: door_v_open
+    21300006: chair_right
+    21300008: chair_left
+    21300010: chair_45_left
+    21300012: chair_45_right
+    21300014: table
+    21300016: tvset_top
+    21300018: potplant_fig
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -130,6 +137,104 @@ TextureImporter:
         serializedVersion: 2
         x: 32
         y: 464
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chair_right
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 416
+        width: 16
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chair_left
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 416
+        width: 16
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chair_45_left
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 416
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chair_45_right
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 416
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: table
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 416
+        width: 48
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tvset_top
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 427
+        width: 48
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: potplant_fig
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 369
         width: 32
         height: 48
       alignment: 0
