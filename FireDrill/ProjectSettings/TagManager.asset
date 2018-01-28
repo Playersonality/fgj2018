@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - Escapee
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -42,4 +43,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: deco
+    uniqueID: 1811938807
     locked: 0
