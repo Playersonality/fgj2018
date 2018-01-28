@@ -50,26 +50,24 @@ public class AI_Behaviour : MonoBehaviour {
         rend.rotation = Quaternion.Euler(0, 0, 0);
         transform.Translate(Vector3.up * speed);
 
-        Debug.DrawRay(transform.position, transform.up * 0.56f, Color.red);
+        //Debug.DrawRay(transform.position, transform.up * 0.56f, Color.red);
         RaycastHit2D ray = Physics2D.Raycast(transform.position, transform.up, 0.56f, layerMask);
 
         if (ray.collider != null)
         {
             if (ray.collider.gameObject.tag == "Wall")
             {
-                Debug.Log("Hit a wall!");
                 rotation += 90.0f * turnDir;
                 nextToAWall = true;
             }
         }
         else
         {
-            Debug.DrawRay(transform.position, transform.right * 0.56f * (float)turnDir, Color.red);
+            //Debug.DrawRay(transform.position, transform.right * 0.56f * (float)turnDir, Color.red);
             RaycastHit2D ray2 = Physics2D.Raycast(transform.position, transform.right * (float)turnDir, 0.56f, layerMask);
 
             if (nextToAWall && ray2.collider == null)
             {
-                Debug.Log("Moved away from a wall!");
                 rotation -= 90.0f * turnDir;
                 nextToAWall = false;
             }
@@ -112,7 +110,6 @@ public class AI_Behaviour : MonoBehaviour {
             !escaped &&
             !burning)
         {
-            Debug.Log("Crashed to another person");
             Bonk();
             bonkTimer = 0.0f;
         }
@@ -140,12 +137,10 @@ public class AI_Behaviour : MonoBehaviour {
     {
         if (!escaped && !burning && collision.tag == "Exit")
         {
-            Debug.Log("ESCAPED");
             Escape();
         }
         else if (!escaped && !burning && collision.tag == "Fire")
         {
-            Debug.Log("walked into fire");
             SetOnFire();
         }
     }
