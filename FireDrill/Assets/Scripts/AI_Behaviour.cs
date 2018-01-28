@@ -14,10 +14,11 @@ public class AI_Behaviour : MonoBehaviour {
     Collider2D hitCollider;
     ParticleSystem fireParticles;
     LayerMask layerMask;
-    Transform renderer;
+    Transform rend;
     Animator anim;
     bool nextToAWall = false;
     bool burning = false;
+    bool escaped = false;
 
 
 	// Use this for initialization
@@ -25,7 +26,7 @@ public class AI_Behaviour : MonoBehaviour {
         layerMask = 1 << 8 | 1 << 2; //npc | ignore raycast
         layerMask = ~layerMask;
         fireParticles = GetComponent<ParticleSystem>();
-        renderer = transform.GetChild(0);
+        rend = transform.GetChild(0);
         anim = transform.GetChild(0).GetComponent<Animator>();
 	}
 	
@@ -37,7 +38,7 @@ public class AI_Behaviour : MonoBehaviour {
     void FixedUpdate()
     {
         transform.rotation = Quaternion.Euler(0, 0, rotation);
-        renderer.rotation = Quaternion.Euler(0, 0, 0);
+        rend.rotation = Quaternion.Euler(0, 0, 0);
         transform.Translate(Vector3.up * speed);
 
         Debug.DrawRay(transform.position, transform.up * 0.56f, Color.red);
@@ -99,9 +100,21 @@ public class AI_Behaviour : MonoBehaviour {
         }
     }
 
+    private void Escape()
+    {
+        anim.SetBool("escaped", true);
+        speed = 0.0f;
+        Destroy(this.gameObject, 2.0f);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!burning && collision.tag == "Fire")
+        if (!escaped && !burning && collision.tag == "Exit")
+        {
+            Debug.Log("ESCAPED");
+            Escape();
+        }
+        else if (!escaped && !burning && collision.tag == "Fire")
         {
             Debug.Log("walked into fire");
             SetOnFire();

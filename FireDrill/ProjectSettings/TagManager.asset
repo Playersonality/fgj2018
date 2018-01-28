@@ -7,6 +7,7 @@ TagManager:
   - Wall
   - Escapee
   - Fire
+  - Exit
   layers:
   - Default
   - TransparentFX
