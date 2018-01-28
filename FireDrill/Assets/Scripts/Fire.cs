@@ -22,6 +22,7 @@ public class Fire : MonoBehaviour {
         obj.transform.position = startPos;
         flames.Add(obj);
         selfCollider = GetComponent<BoxCollider2D>();
+        Time.timeScale = 0.0f;
     }
 	
 	// Update is called once per frame
