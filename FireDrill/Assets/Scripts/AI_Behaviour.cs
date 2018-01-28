@@ -15,6 +15,7 @@ public class AI_Behaviour : MonoBehaviour {
     ParticleSystem fireParticles;
     LayerMask layerMask;
     Transform renderer;
+    Animator anim;
     bool nextToAWall = false;
     bool burning = false;
 
@@ -25,6 +26,7 @@ public class AI_Behaviour : MonoBehaviour {
         layerMask = ~layerMask;
         fireParticles = GetComponent<ParticleSystem>();
         renderer = transform.GetChild(0);
+        anim = transform.GetChild(0).GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -83,6 +85,7 @@ public class AI_Behaviour : MonoBehaviour {
     public void SetOnFire()
     {
         burning = true;
+        anim.SetBool("burning", true);
         speed *= 2.0f;
         fireParticles.Play();
         Destroy(this.gameObject, 2.0f);
