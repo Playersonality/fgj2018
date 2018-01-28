@@ -14,6 +14,7 @@ public class AI_Behaviour : MonoBehaviour {
     Collider2D hitCollider;
     ParticleSystem fireParticles;
     LayerMask layerMask;
+    Transform renderer;
     bool nextToAWall = false;
     bool burning = false;
 
@@ -23,6 +24,7 @@ public class AI_Behaviour : MonoBehaviour {
         layerMask = 1 << 8 | 1 << 2; //npc | ignore raycast
         layerMask = ~layerMask;
         fireParticles = GetComponent<ParticleSystem>();
+        renderer = transform.GetChild(0);
 	}
 	
 	// Update is called once per frame
@@ -33,10 +35,11 @@ public class AI_Behaviour : MonoBehaviour {
     void FixedUpdate()
     {
         transform.rotation = Quaternion.Euler(0, 0, rotation);
+        renderer.rotation = Quaternion.Euler(0, 0, 0);
         transform.Translate(Vector3.up * speed);
 
-        Debug.DrawRay(transform.position, transform.up * 0.24f, Color.red);
-        RaycastHit2D ray = Physics2D.Raycast(transform.position, transform.up, 0.24f, layerMask);
+        Debug.DrawRay(transform.position, transform.up * 0.56f, Color.red);
+        RaycastHit2D ray = Physics2D.Raycast(transform.position, transform.up, 0.56f, layerMask);
 
         if (ray.collider != null)
         {
@@ -49,8 +52,8 @@ public class AI_Behaviour : MonoBehaviour {
         }
         else
         {
-            Debug.DrawRay(transform.position, transform.right * 0.24f * (float)turnDir, Color.red);
-            RaycastHit2D ray2 = Physics2D.Raycast(transform.position, transform.right * (float)turnDir, 0.24f, layerMask);
+            Debug.DrawRay(transform.position, transform.right * 0.56f * (float)turnDir, Color.red);
+            RaycastHit2D ray2 = Physics2D.Raycast(transform.position, transform.right * (float)turnDir, 0.56f, layerMask);
 
             if (nextToAWall && ray2.collider == null)
             {
