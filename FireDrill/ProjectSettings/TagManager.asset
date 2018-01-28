@@ -47,3 +47,6 @@ TagManager:
   - name: deco
     uniqueID: 1811938807
     locked: 0
+  - name: walls
+    uniqueID: 1534669263
+    locked: 0

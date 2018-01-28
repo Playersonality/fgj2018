@@ -70,8 +70,8 @@ public class Fire : MonoBehaviour {
         {
             Debug.Log("not looped yet");
             Vector2 rayDir = RayDirection((FireDirection)currentDir);
-            RaycastHit2D[] hits = Physics2D.RaycastAll(obj.transform.position + new Vector3(rayDir.x, rayDir.y) * 0.32f, RayDirection((FireDirection)currentDir), 0.05f);
-            Debug.DrawRay(obj.transform.position + new Vector3(rayDir.x, rayDir.y) * 0.32f, RayDirection((FireDirection)currentDir) * 0.05f);
+            RaycastHit2D[] hits = Physics2D.RaycastAll(obj.transform.position + new Vector3(rayDir.x, rayDir.y) * 1.0f, RayDirection((FireDirection)currentDir), 0.05f);
+            Debug.DrawRay(obj.transform.position + new Vector3(rayDir.x, rayDir.y) * 1.0f, RayDirection((FireDirection)currentDir) * 0.05f);
             bool flameHit = false;
             foreach (RaycastHit2D hit in hits)
             {
@@ -133,19 +133,19 @@ public class Fire : MonoBehaviour {
         switch (dir)
         {
             case FireDirection.Up:
-                return new Vector3(0.0f, -0.32f, 0.0f);
+                return new Vector3(0.0f, -1.0f, 0.0f);
                 break;
 
             case FireDirection.Down:
-                return new Vector3(0.0f, 0.32f, 0.0f);
+                return new Vector3(0.0f, 1.0f, 0.0f);
                 break;
 
             case FireDirection.Left:
-                return new Vector3(-0.32f, 0.0f, 0.0f);
+                return new Vector3(-1.0f, 0.0f, 0.0f);
                 break;
 
             case FireDirection.Right:
-                return new Vector3(0.32f, 0.0f, 0.0f);
+                return new Vector3(1.0f, 0.0f, 0.0f);
                 break;
 
             default:
